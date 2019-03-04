@@ -10,3 +10,15 @@ def build(ctx):
         target=ctx.path_to(ctx, 'OUT_DATA', 'initial_locations.csv'),
         name='get_simulation_draws'
     )
+
+    ctx(
+        features='run_py_script',
+        source='get_clear_tables.py',
+        target=[
+            ctx.path_to(ctx, 'OUT_DATA', 'claims_outlier.csv'),
+            ctx.path_to(ctx, 'OUT_DATA', 'cpi_adjust.csv'),
+            ctx.path_to(ctx, 'OUT_DATA', 'final_table.csv'),
+            ctx.path_to(ctx, 'OUT_DATA', 'paper_data.csv')
+        ],
+        name='get_clear_tables'
+    )
