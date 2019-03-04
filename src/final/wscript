@@ -17,6 +17,17 @@ def build(ctx):
             name='plot_locations_{}'.format(model)
         )
 
+    for data in 'claims_outlier', 'cpi_adjust', 'recent_table', 'szpiro_table':
+
+        ctx(
+            features='run_py_script',
+            source='plot_trends.py',
+            deps=ctx.path_to(ctx, 'OUT_DATA', '{}.csv'.format(data)),
+            target=ctx.path_to(ctx, 'OUT_FIGURES', 'fig_{}.png'.format(data)),
+            name='plot_trends.py',
+            append=data
+        )
+
 
     # from src.final.project_dependency_graph import make_project_dependency_graph
 
