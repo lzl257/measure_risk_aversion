@@ -347,10 +347,10 @@ def save_data(known_claim, guess_claim, nonadj_table, cpi_table):
                    index = False, sep = ',')
     
     stab = five_moving(nonadj_table, cpi_table)
-    stab.to_csv(ppj('OUT_DATA', 'final_table.csv'), index = False, sep = ',')
+    stab.to_csv(ppj('OUT_DATA', 'recent_table.csv'), index = False, sep = ',')
     
     data_in_paper = raw_dict['paper_table']
-    data_in_paper.to_csv(ppj('OUT_DATA', 'paper_data.csv'), index=False, sep=',')
+    data_in_paper.to_csv(ppj('OUT_DATA', 'szpiro_table.csv'), index=False, sep=',')
        
 # Export the data we need
 
