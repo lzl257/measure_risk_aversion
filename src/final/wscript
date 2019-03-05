@@ -28,6 +28,14 @@ def build(ctx):
             append=data
         )
 
+    ctx(
+        features='run_py_script',
+        source='plot_cri.py',
+        deps=ctx.path_to(ctx, 'OUT_DATA', 'szpiro_table.csv'),
+        target=ctx.path_to(ctx, 'OUT_FIGURES', 'cri_fun_crra.png'),
+        name='plot_cri.py'
+    )
+
 
     # from src.final.project_dependency_graph import make_project_dependency_graph
 
