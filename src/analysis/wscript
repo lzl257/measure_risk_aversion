@@ -21,3 +21,33 @@ def build(ctx):
             append=model,
             name='schelling_{}'.format(model)
         )
+
+    ctx(
+        features='run_py_script',
+        source='test_rra.py',
+        deps=[
+            ctx.path_to(ctx, 'OUT_DATA', 'szpiro_table.csv'),
+            ctx.path_to(ctx, 'IN_MODEL_CODE', 'reg_model.py'),
+            ctx.path_to(ctx, 'IN_MODEL_SPECS', 'values_in_interest.json')
+        ],
+        name='test_rra'
+    )
+
+    for data in 'szpiro_table', 'recent_table':
+
+        ctx(
+            features='run_py_script',
+            source='szpiro.py',
+            deps=[
+                ctx.path_to(ctx, 'OUT_DATA', '{}.csv'.format(data)),
+                ctx.path_to(ctx, 'IN_MODEL_CODE', 'reg_model.py'),
+                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'values_in_interest.json')
+            ],
+            target=[
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'report_{}.txt'.format(data)),
+                ctx.path_to(ctx, 'OUT_TABLES', '{}_prem_reg.csv'.format(data)),
+                ctx.path_to(ctx, 'OUT_TABLES', '{}_clam_reg.csv'.format(data))
+            ],
+            append=data,
+            name='szpiro.py'
+        )
