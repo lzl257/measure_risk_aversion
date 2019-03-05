@@ -29,7 +29,7 @@ def szp(testh_model, data_name, initial_test, h_test, level):
         data_name (str): name of tables (see **wscript** file)
         initial_test (list): initial vectors for estimating h
         h_test (int): h = h_test? interest in 1 
-                      (saved in **values_in_interest.json.json**)
+                      (saved in **values_in_interest.json**)
         level (float64): ((1 - level)*100)% is significant level.
     
     Returns:

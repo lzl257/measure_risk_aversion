@@ -1,4 +1,6 @@
-"""Process the raw data to generate the table we will use to do the estimation.
+"""
+Process the raw data to generate the tables we will use to implement the 
+estimation.
 
 """
 

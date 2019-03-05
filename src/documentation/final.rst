@@ -8,16 +8,10 @@ Visualisation and results formatting
 Documentation of the code in *src.final*.
 
 
-Schelling example
-=================
-
-.. automodule:: src.final.plot_locations
-    :members:
-
 Data management plots
 =====================
 
-.. automodule:: src.final.plot_trend
+.. automodule:: src.final.plot_trends
 	:members:
 
 Criterion function plots

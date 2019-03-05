@@ -8,7 +8,7 @@ import pytest
 
 
 from numpy.testing import assert_array_equal
-from szpiro import szp
+from src.analysis.szpiro import szp
 from src.model_code.reg_model import reg_testh
 from bld.project_paths import project_paths_join as ppj
 

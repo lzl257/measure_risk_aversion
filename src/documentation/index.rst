@@ -11,6 +11,7 @@ Welcome to Luo Yan's final project!
     :maxdepth: 2
 
     introduction
+    intropro
     original_data
     data_management
     analysis
@@ -18,5 +19,4 @@ Welcome to Luo Yan's final project!
     paper
     model_code
     model_specs
-    library
     references

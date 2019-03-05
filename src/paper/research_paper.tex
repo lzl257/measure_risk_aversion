@@ -85,13 +85,6 @@
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
-If you are using this template, please cite this item from the references: \citet{GaudeckerEconProjectTemplates}
-
-\citet{Schelling69} example in the code is taken from \citet{StachurskiSargent13}
-
-The decision rule of an agent is the following:
-\input{formulas/decision_rule}
-
 The modern measures for risk aversion was first introduced by \citet{arrow1965aspects} and \citet{pratt1978risk} in 1960s. Although there is a consensus on the decreasing absolute risk aversion (DARA), it's ambiguous that the relative risk aversion is increasing, decreasing or constant, both theoretically and empirically. This term paper duplicates an early research conducted by \citet{szpiro1986measuring}, for programming exercise. The data we will use is from Best's Average \& Averages and OECD iLibrary.
 
 Briefly speaking, \citet{szpiro1986measuring} uses time series data of property/liability insurance in the U.S. during 1955-1975 to estimate the coefficient of relative risk aversion. He provides an evidence to support CRRA hypothesis and his results are similar as that of the research conducted by \citet{friend1975demand}, which supports for a coefficient of relative risk aversion between 1 and 2. We also try to use the U.S. aggregate insurance data to estimate the coefficient and the result supports for decreasing relative risk aversion (DRRA) with insurance claims data. It's not suprising to get these conflicting results because we implement the estimation on the different groups. This also implies that the reproducibility of the result is highly dependent on the demographic characters of data.\footnote{\citet{szpiro1983hypotheses} provides an evidence for increasing relative risk aversion (IRRA) using cross-country data, which conflicts his later study (\citet{szpiro1986measuring}). There is also a variety of relative risk aversion estimated by \citet{cohn1975individual}, \citet{siegel1982relative}, \citet{hansen1982generalized}, \citet{morin1983risk} and \citet{eisenhauer1999prudence}}
@@ -267,20 +260,6 @@ However, the evidence supporting CRRA assumption is highly dependent on data. We
 
 From the above disscussion, we find that even though the data has the same type (e.g. all premiums and claims),  different subgroups will give rise to different patterns of relative risk aversion. This reminds us the importance of specifying a particular subgroup to evaluate their attitudes to risk. Further research for example \citet{halek2001demography}, puts an emphasis on this point and uses life insurance data to estimate the coefficient of relative risk aversion across different demographic subgroups. Different risk aversion patterns found in their paper are also intuitive and consistent with the early research.
 
-\begin{figure}
-    \caption{Segregation by cycle in the baseline \citet{Schelling69} model as in the \citet{StachurskiSargent13} example}
-    
-    \includegraphics[width=\textwidth]{../../out/figures/schelling_baseline}
-
-\end{figure}
-
-
-\begin{figure}
-    \caption{Segregation by cycle in the baseline \citet{Schelling69} model, limiting the number of potential moves per period to two}
-    
-    \includegraphics[width=\textwidth]{../../out/figures/schelling_max_moves_2}
-
-\end{figure}
 
 % section introduction (end)
 
@@ -297,6 +276,8 @@ From the above disscussion, we find that even though the data has the same type 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../../out/figures/dag}
 \end{figure}
+
+This templates is created by \citet{GaudeckerEconProjectTemplates}.
 
 
 % \appendix

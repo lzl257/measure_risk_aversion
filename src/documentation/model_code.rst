@@ -5,19 +5,11 @@ Model code
 **********
 
 
-The directory *src.model_code* contains source files that might differ by model and that are potentially used at various steps of the analysis.
+The directory *src.model_code* contains source file that is used both in ``analysis`` and ``final`` steps.
 
-For example, you may have a class that is used both in the :ref:`analysis` and the :ref:`final` steps. Additionally, maybe you have different utility functions in the baseline version and for your robustness check. You can just inherit from the baseline class and override the utility function then.
-
-
-The ``Agent`` class of the Schelling example
-============================================
-
-.. automodule:: src.model_code.agent
-    :members:
 
 Non-linear regression model and vector generating function
 ==========================================================
 
-.. automodule:: src.model_code.estimation
+.. automodule:: src.model_code.reg_model
 	:members:

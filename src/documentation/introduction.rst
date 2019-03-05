@@ -7,8 +7,6 @@ Introduction to Waf Template
 
 Documentation on the rationale, Waf, and more background is at http://hmgaudecker.github.io/econ-project-templates/
 
-The Python version of the template uses a modified version of Stachurski's and Sargent's code accompanying their Online Course :cite:`StachurskiSargent13` for Schelling's (1969, :cite:`Schelling69`) segregation model as the running exmaple.
-
 
 .. _getting_started:
 
@@ -24,7 +22,7 @@ The logic of the project template works by step of the analysis:
 3. Visualisation and results formatting (e.g. exporting of LaTeX tables)
 4. Research paper and presentations. 
 
-It can be useful to have code and model parameters available to more than one of these steps, in that case see sections :ref:`model_specifications`, :ref:`model_code`, and :ref:`library`.
+It can be useful to have code and model parameters available to more than one of these steps, in that case see sections :ref:`model_specifications`, :ref:`model_code`.
 
 First of all, think about whether this structure fits your needs -- if it does not, you need to adjust (delete/add/rename) directories and files in the following locations:
 
