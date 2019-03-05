@@ -16,3 +16,8 @@ The ``Agent`` class of the Schelling example
 .. automodule:: src.model_code.agent
     :members:
 
+Non-linear regression model and vector generating function
+==========================================================
+
+.. automodule:: src.model_code.estimation
+	:members:

@@ -12,3 +12,18 @@ Schelling example
 
 .. automodule:: src.analysis.schelling
     :members:
+
+Regression results 
+==================
+
+.. automodule:: src.analysis.szpiro
+	:members:
+
+
+Test
+====
+
+Test if the coefficients based on the model in *src.model_code* are consistent with those in Szpiro (1986) :cite:`szpiro1986measuring`
+
+.. automodule:: src.analysis.test_rra
+	:members:

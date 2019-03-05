@@ -2,7 +2,7 @@
 
 
 ************
-Introduction
+Introduction to Waf Template
 ************
 
 Documentation on the rationale, Waf, and more background is at http://hmgaudecker.github.io/econ-project-templates/

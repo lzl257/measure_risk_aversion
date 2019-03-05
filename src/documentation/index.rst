@@ -4,8 +4,8 @@
 .. but it should at least contain the `toctree` directive.
 
 
-Welcome to the Demand for Security: Another Way to Measure Risk Aversion project's documentation!
-================================================================================================
+Welcome to Luo Yan's final project!
+===================================
 
 .. toctree::
     :maxdepth: 2
