@@ -51,7 +51,8 @@ def gen_xy(data, h_test):
     
     Args:
         data (pd.DataFrame): complete table with wealth/premiums/claims
-        h_test (int): h = h_test? interest in 1 (saved in **regression.json**)
+        h_test (int): h = h_test? interest in 1 
+                      (saved in **values_in_interest.json**)
         
     Returns:
         ydata (dict): premiums/claims data
