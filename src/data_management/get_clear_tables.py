@@ -198,6 +198,7 @@ def _merge_clam(clam_table, guessed_claims):
 
     Returns:
         final_claims (pd.DataFrame):
+
         final claims table after replacing the outlier
 
     """
