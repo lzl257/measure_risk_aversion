@@ -53,25 +53,57 @@
 
 
 \begin{frame}[t]
-    \frametitle{heading here}
+    \frametitle{Regression Model}
     \begin{itemize}
         \item<+-> Please cite this template as: \citet{GaudeckerEconProjectTemplates}
         \item<+-> \citet{Schelling69} example in the code is taken from \citet{StachurskiSargent13}.
         \item<+-> The decision rule of an agent is \input{formulas/decision_rule}
+        \item<+-> The non-linear regression model is \input{formulas/regression_model}
     \end{itemize}
     \note{~}
 \end{frame}
 
 
-% Print black screen only in presentation mode for finishing up.
-\mode<beamer> {
-    \beamersetaveragebackground{black}
-    \begin{frame}
-        \frametitle{}
-    \end{frame}
+% % Print black screen only in presentation mode for finishing up.
+% \mode<beamer> {
+%     \beamersetaveragebackground{black}
+%     \begin{frame}
+%         \frametitle{}
+%     \end{frame}
 
-    \beamersetaveragebackground{white}
-}
+%     \beamersetaveragebackground{white}
+% }
+
+\begin{frame}
+    \frametitle{An Outlier in The Claims Data (Dollars, Total)}
+    Earthquake in 2011:
+    \includegraphics[width=\textwidth, height=7.5cm]{../../out/figures/fig_claims_outlier}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Premiums and Claims in Constant 2015 Dollars (Per Capita)}
+    \includegraphics[width=\textwidth, height=7.5cm]{../../out/figures/fig_cpi_adjust}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Five-Year Moving Average Process (Dollars, Per Capita)}
+    \includegraphics[width=\textwidth, height=7.5cm]{../../out/figures/fig_recent_table}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Data Used in \citet{szpiro1986measuring} (Dollars, Per Capita)}
+    \includegraphics[width=\textwidth, height=7.5cm]{../../out/figures/fig_szpiro_table}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Criterion Function (Data 1955-1975, Premiums)}
+    \includegraphics[width=\textwidth]{../../out/figures/cri_fun_crra}
+
+\end{frame}
 
 \begin{frame}[allowframebreaks]
     \frametitle{References}
