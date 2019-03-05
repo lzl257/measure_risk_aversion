@@ -16,6 +16,9 @@
 \usepackage{xcolor}
 \usepackage{subcaption}
 \usepackage{minibox}
+\usepackage{mathtools}
+\usepackage{csvsimple}
+\usepackage[bottom]{footmisc}
 % \usepackage{pdf14} % Enable for Manuscriptcentral -- can't handle pdf 1.5
 % \usepackage{endfloat} % Enable to move tables / figures to the end. Useful for some submissions.
 
@@ -68,8 +71,6 @@
 \author{Yan Luo}
 
 \date{
-{\bf Preliminary -- please do not quote} 
-\\[1ex] 
 \today
 }
 
@@ -77,7 +78,7 @@
 
 
 \begin{abstract}
-	Some abstract here.
+	This term paper duplicates an early research conducted by \citet{szpiro1986measuring}. The research aims to use the property/liability data of the U.S. during 1955-1975 to provide an evidence for constant relative risk aversion (CRRA) and estimate them with premiums and claims data respectively. We also use the aggregate insurance data of the U.S. during 1995-2015 to test if CRRA assumption can still remains. The Directed Acyclic Graph (DAG) of my project is attached in the appendix \ref{app A}.
 \end{abstract}
 \clearpage
 
@@ -90,6 +91,181 @@ If you are using this template, please cite this item from the references: \cite
 
 The decision rule of an agent is the following:
 \input{formulas/decision_rule}
+
+The modern measures for risk aversion was first introduced by \citet{arrow1965aspects} and \citet{pratt1978risk} in 1960s. Although there is a consensus on the decreasing absolute risk aversion (DARA), it's ambiguous that the relative risk aversion is increasing, decreasing or constant, both theoretically and empirically. This term paper duplicates an early research conducted by \citet{szpiro1986measuring}, for programming exercise. The data we will use is from Best's Average \& Averages and OECD iLibrary.
+
+Briefly speaking, \citet{szpiro1986measuring} uses time series data of property/liability insurance in the U.S. during 1955-1975 to estimate the coefficient of relative risk aversion. He provides an evidence to support CRRA hypothesis and his results are similar as that of the research conducted by \citet{friend1975demand}, which supports for a coefficient of relative risk aversion between 1 and 2. We also try to use the U.S. aggregate insurance data to estimate the coefficient and the result supports for decreasing relative risk aversion (DRRA) with insurance claims data. It's not suprising to get these conflicting results because we implement the estimation on the different groups. This also implies that the reproducibility of the result is highly dependent on the demographic characters of data.\footnote{\citet{szpiro1983hypotheses} provides an evidence for increasing relative risk aversion (IRRA) using cross-country data, which conflicts his later study (\citet{szpiro1986measuring}). There is also a variety of relative risk aversion estimated by \citet{cohn1975individual}, \citet{siegel1982relative}, \citet{hansen1982generalized}, \citet{morin1983risk} and \citet{eisenhauer1999prudence}}
+
+This paper is organized as following: Section \ref{sec:model} introduces the theoretical model, from which the empirical model is derived. Section \ref{sec:data} presents the data we will use to estimate the coeffient of relative risk aversion. Section \ref{sec: 3} introduces the regression method and results. We also have some discussion on the further extension in this section. Section \ref{app A} shows the DAG of this project, which is drawn from \citet{GaudeckerEconProjectTemplates} templates.
+
+\section{The Model}\label{sec:model}
+
+The relation between wealth and insured assets can be described as following:
+\begin{equation}\label{eq1}
+I = W - \frac{\lambda}{r(W)}
+\end{equation}
+where $I$ is the assets insured, $W$ denotes the wealth, $\lambda = \frac{Premiums}{Claims} - 1$ is the loading charged by the insurance company, $r(W)$ denotes the Paratt-Arrow measure of absolute risk aversion (ARA), i.e. $r(W) = -\frac{U''(W)}{U'(W)}$.
+
+Equation (\ref{eq1}) can be derived from maximizing the agent's expected utility: in the context of insurance, wealth $W$, may be lost with a very small probability, $q\ (0<q\ll1)$. The payment of premium, $\pi$, consists of two parts: one is expected claims, another is proportional loading fee:
+\begin{equation}
+\pi = qI + \lambda qI =qI(1 + \lambda)
+\end{equation}
+Let $N$ be the assets uninsured, then we have the relation among different types of assets
+\begin{equation}\label{eq3}
+I = W - N
+\end{equation}
+and the agent's expected utility:
+\begin{equation}
+E(U) = (1-q)U(W-\pi)+qU(W-\pi-N)
+\end{equation}
+
+For convenience, let $U\coloneqq U(W)$. Then write out the Taylor expansion of expected utility:\footnote{We approximate the utility using the second-order Taylor polynomial without the remainder.}
+\begin{equation}
+\begin{aligned}
+E(U)&=(1-q)(U-\pi U'+\frac{\pi^{2}}{2}U'')+q[U-(\pi +N)U'+\frac{(\pi+N)^{2}}{2}U'']\\
+    &=U-\pi U'+\frac{\pi^{2}}{2}U''-NqU'+\pi NqU''+(\frac{N^{2}}{2})qU''
+\end{aligned}
+\end{equation}
+Apply the first order condition to $E(U)$ with respect to $N$:\footnote{Note that $\pi(N)=q(W-N)(1+\lambda)$ and thus $D_{N}\pi=-q(1+\lambda)$}
+\begin{equation}\label{eq6}
+q(1+\lambda)U'-q^{2}(W-N)(1+\lambda)^{2}U''-qU'+qU''N[qW(1+\lambda)-2q(1+\lambda)]+qU''N=0
+\end{equation}
+Multiply $-\frac{1}{U'}$ on the both sides of (\ref{eq6}):
+\begin{equation}\label{eq7}
+-q(1+\lambda)-q^{2}(1+\lambda)^{2}(W-N)r+q+q^{2}(1+\lambda)(W-N)r-q^{2}(1+\lambda)Nr+Nqr=0
+\end{equation}
+Recall that $r$ is the measure of absolute risk aversion. Rewrite the terms in (\ref{eq7}) and we obtain:
+\begin{equation}
+N=\frac{\lambda}{r}\frac{1}{1-q(1-\lambda^{2})}+qW(1+\lambda)\frac{\lambda}{1-q(1-\lambda^{2})}
+\end{equation}
+Since $0<q\ll1$, we could approximate the uninsured assets to $\frac{\lambda}{r}$. Replace the $N$ in the equation (\ref{eq3}), and we get the equation (\ref{eq1}).
+
+Now we begin to construct the empirical model using (\ref{eq1}). Let $P$ denote the total premiums and $Q$ denote the total claims. Considering the amount of insured assets $I$ cannot be directly observed, we use $P$ and $Q$ to replace it. Let $p$ and $q$ be the premium rate and claim rate respectively, then we have:
+\begin{equation}\label{eq9}
+P=pI\ and\ Q=qI
+\end{equation}
+Combine (\ref{eq1}) and (\ref{eq9}) together we obtain:
+\begin{equation}\label{eq10}
+\begin{aligned}
+P&=pW-\frac{p\lambda}{r(W)}\\
+Q&=qW-\frac{q\lambda}{r(W)}
+\end{aligned}
+\end{equation}
+
+The absolute risk aversion, $r(W)$, is assumed to have the form $\frac{c}{W^{h}}$. Hence $h$ can be used to distinguish the different types of ARA and relative risk aversion (RRA). Without loss of generality, we assume the agent is a risk averter (i.e. c is positive). Recall the definition of $r(W)=-\frac{U''}{U'}$, we have:
+\begin{equation}\label{eq11}
+-\frac{U''}{U'}=\frac{c}{W^{h}}
+\end{equation}
+\begin{equation}\label{eq12}
+\frac{c}{W^{h-1}}=-\frac{WU''}{U'}
+\end{equation}
+Hence when $h>0$, (\ref{eq11}) implies that we have decreasing absolute risk aversion (DARA). By (\ref{eq12}), when $h>1$ we have decreasing relative risk aversion (DRRA); when $h<1$ we have increasing relative risk aversion (IRRA); only when $h=1$, we have constant relative risk aversion (CRRA), which is just $c$. 
+
+Insert $r(W)=\frac{c}{W^{h}}$ into (\ref{eq10}) and we can establish the nonlinear regression model as following:
+\begin{equation}\label{eq13}
+\begin{aligned}
+P_{t}&=aW_{t}+m(\lambda_{t}W_{t}^{h})+\epsilon_{t}\\
+Q_{t}&=bW_{t}+n(\lambda_{t}W_{t}^{h})+\gamma_{t}
+\end{aligned}
+\end{equation}
+where $a=p$, $b=q$, $m=-\frac{p}{c_P}$ and $n=-\frac{q}{c_Q}$. And we can get:
+\begin{equation}\label{eq14}
+c_{P}=-\frac{a}{m}\ and\ c_{Q}=-\frac{b}{n}
+\end{equation}
+When $h=1$, $c_{P}$ and $c_{Q}$ are the coefficients of relative risk aversion we want to estimate.
+
+Note that (\ref{eq13}) implicitly assumes that $p$ and $q$ are constant, and at the same time, the ratio $p/q$ may vary along the timeline. But both assumptions do not affect the final results because the premium rate or claim rate can be eliminated in the equation (\ref{eq14}).
+
+\section{Data}\label{sec:data}
+
+The data used in the \citet{szpiro1986measuring} study contains the annual property/liability insurance data of the U.S. during 1955-1975, which is drawn from Best's Aggregates \& Averages. The wealth data is from \citet{goldsmith2009national}. All data is on a per capita basis and calculated in constant 1975 dollars. The technique of five-year moving average calculation is applied for neutralizing the potential shock effects in premiums and claims data. See Table \ref{szp table}:
+
+%\csvautobooklongtable{../../out/data/paper_data.csv}
+\begin{table}[H]
+\centering
+\captionsetup{font={normalsize}, labelfont=bf}
+\caption{Wealth and Property/Liability Insurance Data (Per Capita) for the U.S., 1955-1975\\\centerline{(In Constant 1975 Dollars)}}
+\csvreader[
+    tabular=cccc,
+    head to column names,
+    table head=\hline\bfseries Year & \bfseries Wealth & \bfseries Premiums & \bfseries Claims\\ \hline,
+    table foot=\hline,]{../../out/data/szpiro_table.csv}{}{\Year & \Wealth & \Premiums & \Claims}\label{szp table}
+\end{table}
+
+We also use the annual data of all types of insurance for the U.S. during 1995-2015 as a counterexample to illustrate that the reproducibility of this model is highly dependent on the data. If we regress on this broader data, it's possible to destroy the assumption of CRRA. In other words, we may reject that $h$ is equal to one. We will see this in the section \ref{sec: 3}.
+
+\section{Regression Method and Empirical Findings}\label{sec: 3}
+Recall the empirical models in equation (\ref{eq13}). Since the structure of models for premiums and claims is the same, we take the premium model as our example in this section. For the claim model we only give the results. We use the non-linear least squares method to estimate the coefficient of relative risk aversion, $c_P$.
+
+Before estimating the coefficients $a$ and $m$, we need to determine the value of $h$ in the first place. If $h=1$, the assumption of CRRA is satisfied and it's reasonable to continue the next estimation. Otherwise we cannot say that the coefficient of relative risk aversion is constant and the model introduced by \citet{szpiro1986measuring} is not appropriate here. Including the coefficient $h$ in the model, the random sample criterion function $Q_n(\theta)$ (where $\theta$ is the coefficients vector $(a, m, h)$) is 
+\begin{equation}
+Q_n(\theta)=\sum_{t=1955}^{1975}\{P_t-[aW_{t}+m(\lambda_{t}W_{t}^{h})]\}
+\end{equation}
+The non-linear regression estimator, $\hat{\theta}$, is
+\begin{equation}
+\hat{\theta}=arg \min \limits_{\theta\in \vartheta} Q_n(\theta)
+\end{equation}
+where we set $\vartheta$ as $\mathbb{R}^{3}$. \citet{szpiro1986measuring} restricts the coefficient $h$ to the range of $[-5, 5]$ for the convienience of direct searching. We relax this constraint and use the related method from the Python library Scipy to find the optimal solution.
+
+The estimator for the coefficient $h$, $\hat{h}$, is about $1.17$. The t-value for the null hypothesis $h=1$ is $0.30$, which is significantly less than $1.73$ given the significant level $90\%$. This means that $h$ is \textit{not} significantly different from $1$ and we cannot reject $h=1$. For the claims observations, we get the similar result: $\hat{h}=1.14$ and t-value is $0.38$.
+
+Now we let $h=1$ and re-estimate $a$ and $m$ in the model. The graph of samples criterion function ($a, m \in [-0.01, 0.01]$) is presented in Figure \ref{sse figure}. It's straightforward to observe that the minimizer can be found around zero with opposite signs of $a$ and $m$. The equation (\ref{eq14}) then implies that the coefficient of relative risk aversion is positive and is consistent with the consensus on risk preference.
+
+\begin{figure}[H]
+\captionsetup{font={normalsize}, labelfont=bf}
+\caption{Minimum of SSE for Premiums Data ($h=1$)}
+\includegraphics[width=\textwidth]{../../out/figures/cri_fun_crra}\label{sse figure}
+
+\end{figure}
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\captionsetup{font={normalsize}, labelfont=bf}
+\caption{Regression Results ($h=1$)}
+\csvreader[
+    tabular=cccccc,
+    head to column names,
+    table head=\hline\  & $a$ & $t(a)$ & $m$ & $t(m)$ & $R^{2}$\\ \hline,
+    table foot=\hline,]{../../out/tables/szpiro_table_prem_reg.csv}{}{\type & \a & \ta & \m & \tm & \Rsp}\\
+\csvreader[
+    tabular=cccccc,
+    head to column names,
+    table head=\  & $b$ & $t(b)$ & $n$ & $t(n)$ & $R^{2}$\\ \hline,
+    table foot=\hline,]{../../out/tables/szpiro_table_clam_reg.csv}{}{\type\ \ \ \ \ & \b & \tb & \n & \tn & \Rsq}\label{reg results}
+\end{table}
+
+The results are presented in Table \ref{reg results}. High t-values imply that multicollinearity is not a serious problem in our models. Then we can calculate the coefficients of relative risk aversion according to the equation (\ref{eq14}):
+$$c_P=1.79\ and\ c_Q=1.21$$
+Furthermore the 95\% confidence band for premiums data can be derived by:
+$$\frac{a-SE(a)}{m+SE(m)}\le c_P \le \frac{a+SE(a)}{m-SE(m)}$$
+and we get 
+$$1.56\le c_P \le 2.14$$
+Analogously we can also calculate the band for claims data:
+$$1.13\le c_Q \le 1.32$$
+Both $c_P$ and $c_Q$ fall into those bands and are consistent with the results presented in \citet{szpiro1986measuring}.
+
+However, the evidence supporting CRRA assumption is highly dependent on data. We take the aggregate insurance data of the U.S. during 1995-2015 to re-estimate the coefficient $h$.\footnote{Data is drawn from OECD iLibrary. Claims data for the U.S. during 1993-2001 is absent and is supplemented using the mean growth rate during 2002-2015. There is also a shock in the year 2011 which is caused by serious earthquake. We replace it by the mean value of claims of 2010 and 2012. The data with the outlier can be seen in the presentation slides.} Figure \ref{comparision} visualizes these two sets of premiums and claims data along the timeline. Casually speaking, although both datasets have been processed with the five-year moving average method, there still exists an apparent fluctuation from $2003$ to $2007$ in the premiums data. Moverover, the ratio of premiums and claims significantly varies with time in the aggregate insurance data during 1995-2005 and in contrast, the ratio in the property/liability data almost remains constant. The result of testing $h=1$ shows that we can significantly reject the null hypothesis and thus CRRA assumption is destroyed. The estimators $\hat{h}$ for premiums and claims data are $-0.38$ and $4.61$ respectively and both of them can be rejected under $90\%$ significant level to be unity.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font={normalsize}, labelfont=bf}
+\caption{Comparison between Property/Liability Insurance Data and Aggregate Insurance Data}
+
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{../../out/figures/fig_szpiro_table}
+    \caption{Property/Liability}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{../../out/figures/fig_recent_table}
+    \caption{Aggregate}
+\end{subfigure}
+
+\end{figure}\label{comparision}
+
+From the above disscussion, we find that even though the data has the same type (e.g. all premiums and claims),  different subgroups will give rise to different patterns of relative risk aversion. This reminds us the importance of specifying a particular subgroup to evaluate their attitudes to risk. Further research for example \citet{halek2001demography}, puts an emphasis on this point and uses life insurance data to estimate the coefficient of relative risk aversion across different demographic subgroups. Different risk aversion patterns found in their paper are also intuitive and consistent with the early research.
 
 \begin{figure}
     \caption{Segregation by cycle in the baseline \citet{Schelling69} model as in the \citet{StachurskiSargent13} example}
@@ -115,7 +291,12 @@ The decision rule of an agent is the following:
 \printbibliography
 \setstretch{1.5}
 
-
+\newpage
+\appendix
+\section{DAG of Project}\label{app A}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{../../out/figures/dag}
+\end{figure}
 
 
 % \appendix
