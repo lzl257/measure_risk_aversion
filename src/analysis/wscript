@@ -3,16 +3,7 @@
 
 def build(ctx):
 
-    ctx(
-        features='run_py_script',
-        source='test_rra.py',
-        deps=[
-            ctx.path_to(ctx, 'OUT_DATA', 'szpiro_table.csv'),
-            ctx.path_to(ctx, 'IN_MODEL_CODE', 'reg_model.py'),
-            ctx.path_to(ctx, 'IN_MODEL_SPECS', 'values_in_interest.json')
-        ],
-        name='test_rra'
-    )
+
 
     for data in 'szpiro_table', 'recent_table':
 
@@ -30,5 +21,16 @@ def build(ctx):
                 ctx.path_to(ctx, 'OUT_TABLES', '{}_clam_reg.csv'.format(data))
             ],
             append=data,
-            name='szpiro.py'
+            name='results_{}'.format(data)
         )
+
+    ctx(
+        features='run_py_script',
+        source='test_rra.py',
+        deps=[
+            ctx.path_to(ctx, 'OUT_DATA', 'szpiro_table.csv'),
+            ctx.path_to(ctx, 'IN_MODEL_CODE', 'reg_model.py'),
+            ctx.path_to(ctx, 'IN_MODEL_SPECS', 'values_in_interest.json')
+        ],
+        name='test_rra'
+    )
