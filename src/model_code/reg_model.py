@@ -42,7 +42,7 @@ def reg_model(x, a, m):
         m (float64): coefficient being estimated
 
     Returns:
-        Formular ormular
+        Formular
 
     """
     w = x[0]
